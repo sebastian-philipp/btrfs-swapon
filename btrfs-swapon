@@ -13,7 +13,12 @@ swapsize="$1"
 swapname="$2"
 
 swapfile=$(losetup -f) #free loop device
-head -c $swapsize /dev/zero > $swapname
+
+# set NOCOW
+touch $swapname
+chattr +C $swapname
+head -c $swapsize /dev/zero >> $swapname
+
 losetup $swapfile $swapname #mount file to loop
 mkswap  $swapfile
 swapon  $swapfile
