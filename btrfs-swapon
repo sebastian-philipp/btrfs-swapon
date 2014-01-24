@@ -12,6 +12,13 @@ fi
 swapsize="$1"
 swapname="$2"
 
+
+if [ -e $swapname ]
+then
+	echo "error: File already exists. $swapname"
+	exit 1
+fi
+
 swapfile=$(losetup -f) #free loop device
 
 # set NOCOW
