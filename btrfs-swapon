@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# 
+
+if [ -z "$1" -o -z "$2" ]
+then
+	echo "usage: $0 <size> <file>"
+	exit 1
+fi
+
+# echo $1 $2
+swapsize="$1"
+swapname="$2"
+
+swapfile=$(losetup -f) #free loop device
+truncate -s $swapsize $swapname   #create 8G sparse swap file
+losetup $swapfile $swapname #mount file to loop
+mkswap  $swapfile
+swapon  $swapfile
