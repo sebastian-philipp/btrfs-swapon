@@ -1,17 +1,24 @@
 #!/bin/sh
+#
+# Copyright (C) Sebastian Philipp
+#
 
-set -e 
+set -e
 
-if [ -z "$1" -o -z "$2" ]
-then
-	echo "usage: $0 <size> <file>"
-	exit 1
-fi
-
-# echo $1 $2
 swapsize="$1"
 swapname="$2"
 
+
+if [ -z "$swapsize" -o -z "$swapname" ]
+then
+	cat <<EOF
+Usage: $0 <size> <file>
+
+size:      the size of the file, like "8G"
+file:      path to the new swap file. This file should not exists.
+EOF
+	exit 1
+fi
 
 if [ -e $swapname ]
 then
