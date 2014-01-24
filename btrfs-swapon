@@ -13,7 +13,7 @@ swapsize="$1"
 swapname="$2"
 
 swapfile=$(losetup -f) #free loop device
-truncate -s $swapsize $swapname   #create 8G sparse swap file
+head -c $swapsize /dev/zero > $swapname
 losetup $swapfile $swapname #mount file to loop
 mkswap  $swapfile
 swapon  $swapfile
