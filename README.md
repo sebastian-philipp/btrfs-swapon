@@ -6,7 +6,17 @@ Keep in mind, that a copy-on-write file system is not the best choice to use a s
 
 
 This script is based on http://www.spinics.net/lists/linux-btrfs/msg28533.html
+and https://gist.github.com/romaninsh/118952ce61643914fb00
 
+## Usage
+
+```
+Usage: btrfs-swapon <size> <file>
+       btrfs-swapoff <file>
+
+size:      the size of the file, like "8G"
+file:      path to the swap file.
+```
 
 ## WARNNG
 Don't balance your file system as long as you use this swap file. 
