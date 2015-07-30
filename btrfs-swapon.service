@@ -1,0 +1,11 @@
+# roughly based on https://gist.github.com/romaninsh/118952ce61643914fb00 (Set up swap on CoreOS)
+
+[Unit]
+Description=Turn on 4GiB swap on BTRFS
+
+[Service]
+Type=oneshot
+Environment="SWAPFILE=/4GiB.swap"
+RemainAfterExit=true
+ExecStart=/sbin/btrfs-swapon 4G ${SWAPFILE}
+ExecStop=/sbin/btrfs-swapoff ${SWAPFILE}
