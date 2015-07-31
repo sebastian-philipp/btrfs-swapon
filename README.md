@@ -18,6 +18,19 @@ size:      the size of the file, like "8G"
 file:      path to the swap file.
 ```
 
+## Using the systemd service
+#### Installing
+```
+cp btrfs-swapoff btrfs-swapon /sbin/
+cp btrfs-swapon.service /etc/systemd/system/
+```
+
+#### executing systemctl
+```
+systemctl start btrfs-swapon.service
+systemctl stop btrfs-swapon.service
+```
+
 ## WARNNG
 Don't balance your file system as long as you use this swap file. 
 
