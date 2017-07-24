@@ -30,6 +30,7 @@ swapfile=$(losetup -f) #free loop device
 
 # set NOCOW
 touch $swapname
+chmod 0600 /swap
 chattr +C $swapname
 head -c $swapsize /dev/zero >> $swapname
 
