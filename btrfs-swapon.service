@@ -2,6 +2,7 @@
 
 [Unit]
 Description=Turn on 4GiB swap on BTRFS
+After=syslog.target
 
 [Service]
 Type=oneshot
@@ -9,3 +10,6 @@ Environment="SWAPFILE=/4GiB.swap"
 RemainAfterExit=true
 ExecStart=/sbin/btrfs-swapon 4G ${SWAPFILE}
 ExecStop=/sbin/btrfs-swapoff ${SWAPFILE}
+
+[Install]
+WantedBy=multi-user.target
