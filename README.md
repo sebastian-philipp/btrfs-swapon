@@ -19,7 +19,7 @@ file:      path to the swap file.
 ```
 
 ## Using the systemd service
-#### Installing
+#### Installing (run manually)
 ```
 cp btrfs-swapoff btrfs-swapon /sbin/
 cp btrfs-swapon.service /etc/systemd/system/
@@ -30,7 +30,27 @@ cp btrfs-swapon.service /etc/systemd/system/
 systemctl start btrfs-swapon.service
 systemctl stop btrfs-swapon.service
 ```
+#### and check:
+```
+free -hw
+```
+
+## Enable/disable service auto-start (run at boot)
+#### enable:
+```
+systemctl enable btrfs-swapon.service
+```
+#### disable:
+```
+systemctl disable btrfs-swapon.service
+```
+#### and check:
+```
+systemctl is-enabled btrfs-swapon.service
+free -hw
+```
 
 ## WARNNG
-Don't balance your file system as long as you use this swap file. 
-
+Don't balance your file system as long as you use this swap file.
+SWAP creating service will start at boot after syslog - "After=syslog.target".
+You may use additional folder for swapfile like "/swap" with btrfs option "chattr -R +C <folder>" to disable BTRFS COW (copy-on-write) for this folder.
