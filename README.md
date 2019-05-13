@@ -1,8 +1,13 @@
 # btrfs-swapon
 
-Btrfs doesn't allow to swap on a file. This script allows you do swap on a file anyway. 
+> From kernel 5.0+ btrfs have native swap files support, but with some limitations. Swap file - must be fully allocated as NOCOW with no compression on one device. 
+>
+> -- <https://btrfs.wiki.kernel.org/index.php/FAQ#Does_btrfs_support_swap_files.3F>
 
-Keep in mind, that a copy-on-write file system is not the best choice to use a swap file. Don't expect high performance.  
+
+~Btrfs doesn't allow to swap on a file. This script allows you do swap on a file anyway.~
+
+~Keep in mind, that a copy-on-write file system is not the best choice to use a swap file. Don't expect high performance.~
 
 
 This script is based on http://www.spinics.net/lists/linux-btrfs/msg28533.html
