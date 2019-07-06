@@ -29,10 +29,11 @@ fi
 swapfile=$(losetup -f) #free loop device
 
 # set NOCOW
-touch $swapname
+#touch $swapname
+fallocate -l "$swapsize" "$swapname"
 chmod 0600 $swapname
 chattr +C $swapname
-head -c $swapsize /dev/zero >> $swapname
+#head -c $swapsize /dev/zero >> $swapname
 
 losetup $swapfile $swapname #mount file to loop
 mkswap  $swapfile
