@@ -1,11 +1,16 @@
-# roughly based on https://gist.github.com/romaninsh/118952ce61643914fb00 (Set up swap on CoreOS)
-
+# Recomended create subvolume /@swap or edit this unit
 [Unit]
 Description=Turn on 4GiB swap on BTRFS
+After=local-fs.target
+RequiresMountsFor=/
+RequiresMountsFor=/@swap
 
 [Service]
 Type=oneshot
-Environment="SWAPFILE=/4GiB.swap"
+Environment="SWAPFILE=/@swap/4GiB.swap"
 RemainAfterExit=true
 ExecStart=/sbin/btrfs-swapon 4G ${SWAPFILE}
 ExecStop=/sbin/btrfs-swapoff ${SWAPFILE}
+
+[Install]
+WantedBy=local-fs.target
